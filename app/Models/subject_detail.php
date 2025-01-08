@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class subject_detail extends Model
 {
     //
+    protected $connection = 'subjects';
     protected $table = 'subject_detail';
 
     protected $fillable=[
