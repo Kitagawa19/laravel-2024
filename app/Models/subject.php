@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\teacher;
+use App\Models\subject_detail;
 
 class subject extends Model
 {
     //
-    protected $table ='subjects';
+    protected $connection = 'subjects';
+    protected $table ='subject';
 
     protected $fillable = [
         'teacher_id',
@@ -16,10 +19,10 @@ class subject extends Model
     ];
 
     public function teacher(){
-        return $this->belongsTo(Teacher::class);
+        return $this->belongsTo(teacher::class);
     }
 
     public function detail(){
-        return $this->belongsTo(SubjectDetail::class,'detail_id');
+        return $this->belongsTo(subject_detail::class,'detail_id');
     }
 }
