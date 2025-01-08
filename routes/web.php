@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentMenuController;
+use App\Http\Controllers\RegisterSubjectsController;
+use App\Http\Controllers\SubjectsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,5 +21,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/mypage', [StudentMenuController::class, 'show'])->name('courses.show');
+Route::get('/registersubject', [RegisterSubjectsController::class, 'getSubject']);
+Route::post('/registersubject', [SubjectsController::class, 'mvregisterpage'])->name('register.show');
 
 require __DIR__.'/auth.php';
