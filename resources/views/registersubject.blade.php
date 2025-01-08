@@ -170,48 +170,33 @@
 
     <script>
         function updateSchedule(event, day, period) {
-            var subjectId = event.target.value;
-            var targetCell = document.getElementById('slot-' + day + '-' + period);
+            const subjectId = event.target.value;
+            const selectElement = event.target;
 
             if (subjectId !== "") {
-                var selectedSubject = document.querySelector(`#subject-${subjectId}`);
-                var subjectName = selectedSubject.querySelector('.font-bold').textContent;
-                var teacherName = selectedSubject.querySelector('.text-sm').textContent.split(' | ')[0];
+                const selectedSubject = document.querySelector(`#subject-${subjectId}`);
+                const subjectName = selectedSubject.querySelector('.font-bold').textContent;
+                const teacherName = selectedSubject.querySelector('.text-sm').textContent.split(' | ')[0];
 
-                targetCell.innerHTML = `<strong>${subjectName}</strong><br><span>${teacherName}</span><br><small>${day} 第${period}限</small><br><button onclick="removeSubject(event, '${day}', ${period})" class="remove-button">削除</button>`;
+                selectElement.setAttribute('data-selected-name', subjectName);
+                selectElement.setAttribute('data-selected-teacher', teacherName);
             } else {
-                targetCell.innerHTML = "<div class='text-xs'>ここに授業を選択</div>";
+                selectElement.removeAttribute('data-selected-name');
+                selectElement.removeAttribute('data-selected-teacher');
             }
         }
 
-        function removeSubject(event, day, period) {
-            event.stopPropagation();
-            var targetCell = document.getElementById('slot-' + day + '-' + period);
-            var selectElement = document.getElementById('subject-select-' + day + '-' + period);
-
-            targetCell.innerHTML = "<select id='subject-select-" + day + "-" + period + "' class='subject-select' onchange='updateSchedule(event, \"" + day + "\", " + period + ")'>" +
-                                   "<option value=''>選択してください</option>" +
-                                   "@foreach ($subject as $item)" +
-                                   "@if (in_array($period, explode(',', $item->detail->time)) && $item->detail->date == $day)" +
-                                   "<option value='{{ $item->id }}'>{{ $item->name }} ({{ $item->teacher->name }})</option>" +
-                                   "@endif" +
-                                   "@endforeach" +
-                                   "</select>";
-            
-            selectElement.value = "";
-        }
-
         function registerSchedule() {
-            var selectedSubjects = [];
-            var cells = document.querySelectorAll('.schedule-table td');
+            const selectedSubjects = [];
+            const selectElements = document.querySelectorAll('.subject-select');
 
-            cells.forEach(function(cell) {
-                if (cell.innerHTML !== "<div class='text-xs'>ここに授業を選択</div>") {
-                    var subjectInfo = cell.innerHTML.split('<br>');
-                    var subjectName = subjectInfo[0].split('<strong>')[1].split('</strong>')[0];
-                    var teacherName = subjectInfo[1].split('<span>')[1].split('</span>')[0];
-                    var timeInfo = subjectInfo[2].split('<small>')[1].split('</small>')[0];
-                    selectedSubjects.push({ subjectName, teacherName, timeInfo });
+            selectElements.forEach(select => {
+                if (select.value !== "") {
+                    selectedSubjects.push({
+                        subjectId: select.value,
+                        subjectName: select.getAttribute('data-selected-name'),
+                        teacherName: select.getAttribute('data-selected-teacher')
+                    });
                 }
             });
 
