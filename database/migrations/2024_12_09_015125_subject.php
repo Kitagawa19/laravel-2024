@@ -11,25 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::create('subjects',function(Blueprint $table){
+        Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->index();
-            $table->string('name',255);
+            $table->unsignedBigInteger('teacher_id'); 
+            $table->string('name', 255);
             $table->unsignedInteger('detail_id');
-            $table->timestamp();
+            $table->timestamps(); 
 
+            // 外部キーの設定
             $table->foreign('teacher_id')
-            ->reference('id')
-            ->on('teachers')
-            ->onDelete('restrict')
-            ->onUpdate('cascade');
+                ->references('id')
+                ->on('teachers')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
 
             $table->foreign('detail_id')
-            ->reference('id')
-            ->on('subject_detail')
-            ->onDelete('restrict')
-            ->onUpdate('cascade');
+                ->references('id')
+                ->on('subject_detail')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
         });
     }
 
@@ -38,7 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
-        Schema::dropIfExists('subjeects');
+        Schema::dropIfExists('subjects');
     }
 };
