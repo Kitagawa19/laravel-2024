@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>履修登録</title>
-    <style>
+<style>
         .schedule-table td {
             min-width: 80px;
-            height: 40px;
+            height: 45px;
         }
 
         .schedule-table select {
             width: 100%;
-            height: 35px;
+            height: 40px;
         }
 
         .container {
             max-width: 1200px;
             margin: auto;
-            padding: 16px;
+            padding: 20px;
         }
 
         .register-button {
@@ -41,7 +35,7 @@
         
         .subject-item {
             color: black;
-            padding: 12px;
+            padding: 16px;
             margin-bottom: 8px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -57,9 +51,7 @@
             font-size: 14px;
         }
     </style>
-</head>
-<body>
-
+<x-app-layout>
     <div class="container">
         <form method="POST" action="{{ route('register.store') }}">
             @csrf
@@ -110,5 +102,4 @@
         </div>
     </div>
 
-</body>
-</html>
+</x-app-layout>
