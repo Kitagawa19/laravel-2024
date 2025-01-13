@@ -13,12 +13,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('registrations', function (Blueprint $table) {
-            $table->id(); // 主キー
-            $table->unsignedBigInteger('user_id')->index(); // 外部キー用
-            $table->unsignedBigInteger('subject_id')->index(); // 外部キー用
-            $table->unsignedTinyInteger('attempts'); // 試行回数
-            $table->timestamp('registered_at')->default(DB::raw('CURRENT_TIMESTAMP')); // 登録日時
-            $table->timestamps(); // created_at と updated_at
+            $table->id(); 
+            $table->unsignedBigInteger('user_id')->index(); 
+            $table->unsignedBigInteger('subject_id')->index(); 
+            $table->unsignedTinyInteger('attempts'); 
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
             // 外部キー制約
             $table->foreign('user_id')
