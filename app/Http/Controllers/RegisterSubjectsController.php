@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\subject;
-
 use Illuminate\Http\Request;
 
 class RegisterSubjectsController extends Controller
