@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="flex flex-row">
-            <div class="items-center mt-4">
+            <div class="items-center mt-4 ">
                 <x-primary-button class="ms-3" onClick="location.href='{{route('register.getSubject')}}' ">
                     {{ __("履修登録") }}
                 </x-primary-button>
