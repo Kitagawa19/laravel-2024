@@ -16,7 +16,6 @@ return new class extends Migration
             $table->id(); 
             $table->unsignedBigInteger('user_id')->index(); 
             $table->unsignedBigInteger('subject_id')->index(); 
-            $table->unsignedTinyInteger('attempts'); 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
