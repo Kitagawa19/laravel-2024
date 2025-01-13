@@ -9,8 +9,7 @@ use App\Models\subject_detail;
 class subject extends Model
 {
     //
-    protected $connection = 'subjects';
-    protected $table ='subject';
+    protected $table ='subjects';
 
     protected $fillable = [
         'teacher_id',
