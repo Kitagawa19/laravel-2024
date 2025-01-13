@@ -16,7 +16,8 @@ return new class extends Migration
             $table->integer('credit');
             $table->string('date', 255);
             $table->text('time');
-            $table->timestamps(); 
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate(); 
         });
     }
 
