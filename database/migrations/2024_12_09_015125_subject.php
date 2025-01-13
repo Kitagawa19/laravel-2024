@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('teacher_id'); 
             $table->string('name', 255);
-            $table->unsignedInteger('detail_id');
-            $table->timestamps(); 
+            $table->unsignedBigInteger('detail_id');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
             // 外部キーの設定
             $table->foreign('teacher_id')
