@@ -5,11 +5,12 @@ use App\Http\Controllers\StudentMenuController;
 use App\Http\Controllers\RegisterSubjectsController;
 use App\Http\Controllers\RegistrationsController;
 use App\Http\Controllers\SubjectsController;
+use App\Http\Controllers\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('auth.login');
+})->middleware('guest');
 
 Route::get('/dashboard', [RegistrationsController::class, 'index'])
     ->middleware(['auth', 'verified'])
