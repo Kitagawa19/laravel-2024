@@ -6,14 +6,14 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="flex flex-row">
-            <div class="items-center mt-4 ">
-                <x-primary-button class="ms-3" onClick="location.href='{{route('register.getSubject')}}' ">
-                    {{ __("履修登録") }}
-                </x-primary-button>
-            </div>
-        </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-6">
+            <div class="flex mb-2">
+                <div class="items-center">
+                    <x-primary-button class="m-2" onClick="location.href='{{route('register.getSubject')}}' ">
+                        {{ __("履修登録") }}
+                    </x-primary-button>
+                </div>
+            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
                     <h3 class="font-semibold text-lg text-gray-800 mb-4">履修登録一覧</h3>
